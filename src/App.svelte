@@ -1,6 +1,6 @@
 <script>
 	import Chart from 'svelte-frappe-charts';
-	import {promise, getData, locations, ages} from './repository';
+	import {promise, locations, ages} from './repository';
 	
 	let location = 'Bundesgebiet';
 	let age = ages[0];
@@ -25,6 +25,6 @@
 </select>
 
 {#await promise then data}
-	<Chart title="Hospitalisierungsinzidenz {location} Altersgruppe {age}" data={getData(data, location, age)} type="line" height="800" lineOptions={{dotSize: 3, regionFill: 1}}
+	<Chart title="Hospitalisierungsinzidenz {location} Altersgruppe {age}" data={data[location][age]} type="line" height="800" lineOptions={{dotSize: 3, regionFill: 1}}
 		axisOptions={{xIsSeries: true, xAxisMode: 'tick'}} />
 {/await}

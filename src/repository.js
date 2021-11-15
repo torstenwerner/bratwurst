@@ -11,29 +11,27 @@ function parse(csv) {
         return result;
     }
 
+    function toFrappe(value) {
+        const byAge = Object.entries(value)
+            .map(([age, value]) => ([age, {
+                labels: value.map(row => row.date).reverse(),
+                datasets: [{values: value.map(row => row.incidence).reverse()}]
+            }]));
+        return Object.fromEntries(byAge);
+    }
+
     const byLocation = csv.split('\n').slice(1)
         .map(line => line.split(','))
         .map(([date, location, , age, , incidence]) => ({location, value: {age, value: {date, incidence}}}))
         .reduce((result, current) => reduceLocation(result, current), {});
     const byLocationAndAge = Object.entries(byLocation)
-        .map(([location, value]) => ([location, value.reduce((result, current) => reduceAge(result, current), {})]));
+        .map(([location, value]) => ([location, toFrappe(value.reduce((result, current) => reduceAge(result, current), {}))]));
     return Object.fromEntries(byLocationAndAge);
 }
 
-function fetchData() {
-    return fetch(url)
-        .then(response => response.text())
-        .then(csv => parse(csv));
-}
-
-export const promise = fetchData();
-
-export function getData(json, location, age) {
-    return {
-        labels: json[location][age].map(row => row.date).reverse(),
-        datasets: [{values: json[location][age].map(row => row.incidence).reverse()}]
-    };
-}
+export const promise = fetch(url)
+    .then(response => response.text())
+    .then(csv => parse(csv));
 
 export const locations = ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen', 'Bundesgebiet', 'Hamburg', 'Hessen',
 'Mecklenburg-Vorpommern', 'Niedersachsen', 'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Sachsen',
