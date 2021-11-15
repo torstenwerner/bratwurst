@@ -1,5 +1,8 @@
 <script>
 	export let name;
+	fetch('/bratwurst.json')
+		.then(response => response.json())
+		.then(json => console.dir(json));
 </script>
 
 <main>
