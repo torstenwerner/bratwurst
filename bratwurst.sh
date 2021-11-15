@@ -10,8 +10,11 @@ for LOCATION in 'Baden-Württemberg' 'Bayern' 'Berlin' 'Brandenburg' 'Bremen' 'B
     'Mecklenburg-Vorpommern' 'Niedersachsen' 'Nordrhein-Westfalen' 'Rheinland-Pfalz' 'Saarland' 'Sachsen' \
     'Sachsen-Anhalt' 'Schleswig-Holstein' 'Thüringen'
 do
-    awk -F, '$2 == "'$LOCATION'" && $4 == "60-79" {print $1, $6}' < raw.csv | \
-        jq -R '[inputs | split(" ") | { date: .[0], incidence: .[1] }]' > public/data/$LOCATION.json
+    for AGE in '00+' '00-04' '05-14' '15-34' '35-59' '60-79' '80+'
+    do
+        awk -F, '$2 == "'$LOCATION'" && $4 == "'$AGE'" {print $1, $6}' < raw.csv | \
+            jq -R '[inputs | split(" ") | { date: .[0], incidence: .[1] }]' > public/data/${LOCATION}_${AGE}.json
+    done
 done
 
 rm -f raw.csv

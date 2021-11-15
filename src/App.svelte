@@ -1,13 +1,13 @@
 <script>
 	import Chart from 'svelte-frappe-charts';
-	import {fetchData, locations} from './repository';
+	import {fetchData, locations, ages} from './repository';
 	
 	let location = 'Bundesgebiet';
 
-	let promise = fetchData(location)
+	let promise = fetchData(location, ages[0]);
 </script>
 
-<select bind:value={location} on:change="{() => promise = fetchData(location)}">
+<select bind:value={location} on:change="{() => promise = fetchData(location, ages[0])}">
 	{#each locations as value}
 		<option value={value}>
 			{value}
