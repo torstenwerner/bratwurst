@@ -1,6 +1,8 @@
+const currentDate = new Date().toLocaleDateString();
+
 export function fetchData(location, age) {
     console.log(age);
-    return fetch(`data/${location}_${age}.json`)
+    return fetch(`data/${location}_${age}.json?cacheBuster=${currentDate}`)
         .then(response => response.json())
         .then(json => ({
             labels: json.map(row => row.date).reverse(),
