@@ -13,7 +13,7 @@ do
     for AGE in '00+' '00-04' '05-14' '15-34' '35-59' '60-79' '80+'
     do
         awk -F, '$2 == "'$LOCATION'" && $4 == "'$AGE'" {print $1, $6}' < raw.csv | \
-            jq -R '[inputs | split(" ") | { date: .[0], incidence: .[1] }]' > public/data/${LOCATION}_${AGE}.json
+            jq -R '[inputs | split(" ") | { date: .[0], incidence: .[1] }]' > docs/data/${LOCATION}_${AGE}.json
     done
 done
 
