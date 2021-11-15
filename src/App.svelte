@@ -25,6 +25,6 @@
 </select>
 
 {#await promise then data}
-	<Chart title="Hospitalisierungsinzidenz {location} Altersgruppe {age}" data={data[location][age]} type="line" height="800" lineOptions={{dotSize: 3, regionFill: 1}}
-		axisOptions={{xIsSeries: true, xAxisMode: 'tick'}} />
+	<Chart title="Hospitalisierungsinzidenz" data={data[location][age]} type="line" height="800"
+		lineOptions={{dotSize: 3, regionFill: 1}} axisOptions={{xIsSeries: true, xAxisMode: 'tick'}} />
 {/await}
