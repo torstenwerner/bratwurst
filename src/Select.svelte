@@ -1,10 +1,11 @@
 <script>
+    export let label;
     export let values;
     export let value;
 </script>
 
 <div>
-    <label for="select">Region</label>
+    <label for="select">{label}</label>
     <select name="select" bind:value>
         {#each values as value}
             <option value={value}>

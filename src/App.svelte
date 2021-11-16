@@ -8,8 +8,8 @@
 </script>
 
 <header>
-	<Select values={locations} bind:value={location}/>
-	<Select values={ages} bind:value={age}/>
+	<Select label="Region" values={locations} bind:value={location}/>
+	<Select label="Altersgruppe" values={ages} bind:value={age}/>
 	
 	<p>
 		Es werden die Daten des Robert-Koch-Instituts zur Hospitalisierungsinzidenz für Deutschland angezeigt.
