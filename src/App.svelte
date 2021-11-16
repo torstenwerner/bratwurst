@@ -13,6 +13,7 @@
 	
 	<p>
 		Es werden die Daten des Robert-Koch-Instituts zur Hospitalisierungsinzidenz für Deutschland angezeigt.
+		Die Daten werden vom RKI täglich aktualisiert.
 		Hinweis: die Werte bis einschließlich Mai 2020 sind sehr ungenau, weil das Meldesystem zu dieser Zeit erst aufgebaut wurde.
 	</p>	
 </header>
