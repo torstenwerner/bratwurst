@@ -29,7 +29,7 @@
 		padding: 0.25em 0.75em;
 	}
 	select {
-		width: 15ch;
+		width: 25ch;
 		border: 1px solid var(--select-border);
     	border-radius: 0.25em;
 		padding: 0.25em 0.5em;
