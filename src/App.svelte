@@ -8,7 +8,7 @@
 </script>
 
 <header>
-	<Select label="Region" values={locations} bind:value={location}/>
+	<Select label="Region" values={locations} bind:value={location} focus/>
 	<Select label="Altersgruppe" values={ages} bind:value={age}/>
 	
 	<p>

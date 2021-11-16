@@ -2,11 +2,17 @@
     export let label;
     export let values;
     export let value;
+    export let focus = false;
+    function initFocus(element) {
+        if (focus) {
+            element.focus();
+        }
+    }
 </script>
 
 <div>
     <label for="select">{label}</label>
-    <select name="select" bind:value>
+    <select name="select" bind:value use:initFocus>
         {#each values as value}
             <option value={value}>
                 {value}
