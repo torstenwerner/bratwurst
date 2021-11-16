@@ -1,33 +1,15 @@
 <script>
 	import Chart from 'svelte-frappe-charts';
 	import {promise, locations, ages} from './repository';
+	import Select from './Select.svelte';
 	
 	let location = 'Bundesgebiet';
 	let age = ages[0];
 </script>
 
 <header>
-	<div class=select-container>
-		<label for="location">Region</label>
-		<select name="location" bind:value={location}>
-			{#each locations as value}
-				<option value={value}>
-					{value}
-				</option>
-			{/each}
-		</select>	
-	</div>
-	
-	<div class=select-container>
-		<label for="age">Altersgruppe</label>
-		<select name="age" bind:value={age}>
-			{#each ages as value}
-				<option value={value}>
-					{value}
-				</option>
-			{/each}
-		</select>
-	</div>
+	<Select values={locations} bind:value={location}/>
+	<Select values={ages} bind:value={age}/>
 	
 	<p>
 		Es werden die Daten des Robert-Koch-Instituts zur Hospitalisierungsinzidenz für Deutschland angezeigt.
@@ -41,27 +23,10 @@
 {/await}
 
 <style>
-	:root {
-		--select-border: #777;
-		--select-arrow: var(--select-border);
-	}
 	header {
 		display: flex;
 		gap: 1em;
 		align-items: flex-end;
-	}
-	.select-container {
-		display: inline-block;
-	}
-	label {
-		padding: 0.25em 0.75em;
-	}
-	select {
-		width: 15ch;
-		border: 1px solid var(--select-border);
-    	border-radius: 0.25em;
-		padding: 0.25em 0.5em;
-		cursor: pointer;
 	}
 	p {
 		margin: 0.5em 0;
