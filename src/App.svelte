@@ -32,4 +32,12 @@
 	p {
 		margin: 0.5em 0;
 	}
+	@media (max-width: 120ch) {
+		header {
+			flex-wrap: wrap;
+		}
+		p {
+			order: -1;
+		}
+	}
 </style>
