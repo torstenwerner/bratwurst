@@ -1,7 +1,7 @@
-import parser from 'web-worker:./parser.js';
+import dataworker from 'web-worker:./dataworker.js';
 
 export const promise = new Promise(resolve => {
-    const rkiParser = new parser();
+    const rkiParser = new dataworker();
     rkiParser.onmessage = (event) => {
         resolve(event.data);
         rkiParser.terminate();
