@@ -24,6 +24,7 @@
 <style>
 	:root {
 		--select-border: #777;
+        --select-focus-border: rgb(124, 214, 253);
 	}
 	label {
 		padding: 0.25em 0.75em;
@@ -35,4 +36,8 @@
 		padding: 0.25em 0.5em;
 		cursor: pointer;
 	}
+    select:focus {
+        border-color: var(--select-focus-border);
+        outline-color: var(--select-focus-border);
+    }
 </style>
