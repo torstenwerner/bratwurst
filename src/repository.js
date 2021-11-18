@@ -1,13 +1,32 @@
-import parser from 'web-worker:./parser.js';
+const url = 'https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/master/Aktuell_Deutschland_COVID-19-Hospitalisierungen.csv';
 
-export const promise = new Promise(resolve => {
-    const rkiParser = new parser();
-    rkiParser.onmessage = (event) => {
-        resolve(event.data);
-        rkiParser.terminate();
+function parse(csv) {
+    function rki2Frappe(dataset, csvLine) {
+        const [date, location, , age, , incidence] = csvLine.split(',');
+        if (!dataset[location]) {
+            dataset[location] = {};
+        }
+        if (!dataset[location][age]) {
+            dataset[location][age] = {
+                labels: [],
+                datasets: [{values: []}]
+            };
+        }
+        dataset[location][age].labels.push(date);
+        dataset[location][age].datasets[0].values.push(incidence);
+        return dataset;
     }
-    rkiParser.postMessage(null);
-});
+
+    return csv
+        .split('\n')
+        .slice(1)
+        .reverse()
+        .reduce((result, current) => rki2Frappe(result, current), {});
+}
+
+export const promise = fetch(url)
+    .then(response => response.text())
+    .then(csv => parse(csv));
 
 export const locations = ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen', 'Bundesgebiet', 'Hamburg', 'Hessen',
 'Mecklenburg-Vorpommern', 'Niedersachsen', 'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Sachsen',
