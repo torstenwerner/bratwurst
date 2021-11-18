@@ -23,15 +23,17 @@
 
 <style>
 	:root {
-		--select-border: #777;
+		--gray-color: #777;
         --select-focus-border: rgb(124, 214, 253);
 	}
 	label {
-		padding: 0.25em 0.75em;
+		padding: 0.25rem 0.75rem;
+        color: var(--gray-color);
+        font-size: 00.75rem;
 	}
 	select {
 		width: 25ch;
-		border: 1px solid var(--select-border);
+		border: 1px solid var(--gray-color);
     	border-radius: 0.25em;
 		padding: 0.25em 0.5em;
 		cursor: pointer;
