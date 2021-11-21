@@ -1,6 +1,6 @@
 <script>
 	import Chart from 'svelte-frappe-charts';
-	import {promise, locations, ages} from './repository';
+	import {promise, locations, ages, postChanges} from './repository';
 	import Select from './Select.svelte';
 	
 	let location = 'Bundesgebiet';
@@ -17,6 +17,8 @@
 		Hinweis: die Werte bis einschließlich Mai 2020 sind sehr ungenau, weil das Meldesystem zu dieser Zeit erst aufgebaut wurde.
 	</p>	
 </header>
+
+<Chart title="Nachmeldungen" data={postChanges} type="bar" height="400" />
 
 {#await promise then data}
 	<Chart title="Hospitalisierungsinzidenz" data={data[location][age]} type="line" height="800"

@@ -33,3 +33,8 @@ export const locations = ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg
 'Sachsen-Anhalt', 'Schleswig-Holstein', 'Thüringen'];
 
 export const ages = ['00+', '00-04', '05-14', '15-34', '35-59', '60-79', '80+'];
+
+export const postChanges = {
+    labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+    datasets: [{values: [4.02, 4.22, 4.83, 5.39, 5.89, 6.23, 6.5, 6.61, 6.67, 6.87, 7.08, 7.21, 7.31, 7.41, 7.43]}]
+};

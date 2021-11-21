@@ -24,7 +24,7 @@
 <style>
 	:root {
 		--gray-color: #777;
-        --select-focus-border: rgb(124, 214, 253);
+        --select-focus-border: #7cd6fd;
 	}
 	label {
 		padding: 0.25rem 0.75rem;
