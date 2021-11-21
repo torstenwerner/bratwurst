@@ -25,12 +25,19 @@
 {/await}
 
 <style>
+	:root {
+		--margin-size1: 50vw;
+		--margin-size2: 35em;
+	}
+	.size3 {
+		width: max(0px, var(--size1) - var(--size2));
+	}
 	header {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 1em;
 		align-items: flex-end;
-		margin: 0 max(0px, 50vw - 55ch);
+		margin: 0 max(0px, var(--margin-size1) - var(--margin-size2));
 	}
 	p {
 		margin: 0.5em 0;
