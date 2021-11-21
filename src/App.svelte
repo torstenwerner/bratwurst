@@ -29,9 +29,6 @@
 		--margin-size1: 50vw;
 		--margin-size2: 35em;
 	}
-	.size3 {
-		width: max(0px, var(--size1) - var(--size2));
-	}
 	header {
 		display: flex;
 		flex-wrap: wrap;
