@@ -4,19 +4,24 @@
 	import Description from "./Description.svelte";
 	import Select from './Select.svelte';
 	
+	let showFullDescription;
 	let location = 'Bundesgebiet';
 	let age = ages[0];
 </script>
 
 <header>
-	<Description/>
-	<Select label="Region" values={locations} bind:value={location} focus/>
-	<Select label="Altersgruppe" values={ages} bind:value={age}/>
+	<Description bind:opened={showFullDescription} />
+	{#if !showFullDescription}
+		<Select label="Region" values={locations} bind:value={location} focus />
+		<Select label="Altersgruppe" values={ages} bind:value={age} />
+	{/if}
 </header>
 
 {#await promise then data}
-	<Chart title="Hospitalisierungsinzidenz" data={data[location][age]} type="line" height="800"
-		lineOptions={{dotSize: 3, regionFill: 1}} axisOptions={{xIsSeries: true, xAxisMode: 'tick'}} />
+	{#if !showFullDescription}
+		<Chart title="Hospitalisierungsinzidenz" data={data[location][age]} type="line" height="800"
+			lineOptions={{dotSize: 3, regionFill: 1}} axisOptions={{xIsSeries: true, xAxisMode: 'tick'}} />
+	{/if}
 {/await}
 
 <style>
