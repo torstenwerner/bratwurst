@@ -8,7 +8,7 @@
 	let showFullDescription;
 	let location = 'Bundesgebiet';
 	let age = ages[0];
-	let height = window.innerHeight > 400 ? 200 + window.innerHeight / 2 : window.innerHeight;
+	let height = Math.min(200 + window.innerHeight / 2, window.innerHeight);
 </script>
 
 <header>
