@@ -1,6 +1,7 @@
 <script>
 	import Chart from 'svelte-frappe-charts';
-	import {promise, locations, ages, postChanges} from './repository';
+	import {promise, locations, ages} from './repository';
+	import Description from "./Description.svelte";
 	import Select from './Select.svelte';
 	
 	let location = 'Bundesgebiet';
@@ -8,16 +9,10 @@
 </script>
 
 <header>
-	<p>
-		Es werden die Daten des Robert-Koch-Instituts zur Hospitalisierungsinzidenz für Deutschland angezeigt.
-		Die Daten werden vom RKI täglich aktualisiert.
-		Hinweis: die Werte bis einschließlich Mai 2020 sind sehr ungenau, weil das Meldesystem zu dieser Zeit erst aufgebaut wurde.
-	</p>	
+	<Description/>
 	<Select label="Region" values={locations} bind:value={location} focus/>
 	<Select label="Altersgruppe" values={ages} bind:value={age}/>
 </header>
-
-<Chart title="Nachmeldungen" data={postChanges} type="bar" height="400" />
 
 {#await promise then data}
 	<Chart title="Hospitalisierungsinzidenz" data={data[location][age]} type="line" height="800"
@@ -25,6 +20,10 @@
 {/await}
 
 <style>
+	:global(:root) {
+		--gray-color: #777;
+        --select-focus-border: #7cd6fd;
+	}
 	:root {
 		--margin-size1: 50vw;
 		--margin-size2: 35em;
@@ -35,8 +34,5 @@
 		gap: 1em;
 		align-items: flex-end;
 		margin: 0 max(0px, var(--margin-size1) - var(--margin-size2));
-	}
-	p {
-		margin: 0.5em 0;
 	}
 </style>
