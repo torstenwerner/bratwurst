@@ -30,7 +30,7 @@
 <style>
 	:global(:root) {
 		--gray-color: #777;
-        --select-focus-border: #7cd6fd;
+        --blue-color: #7cd6fd;
 	}
 	:root {
 		--margin-size1: 50vw;

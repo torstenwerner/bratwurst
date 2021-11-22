@@ -37,7 +37,7 @@
 		cursor: pointer;
 	}
     select:focus {
-        border-color: var(--select-focus-border);
-        outline-color: var(--select-focus-border);
+        border-color: var(--blue-color);
+        outline-color: var(--blue-color);
     }
 </style>

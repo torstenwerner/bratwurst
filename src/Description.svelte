@@ -39,7 +39,7 @@
         margin-block: 0;
     }
     .trigger {
-        color: var(--select-focus-border);
+        color: var(--blue-color);
         cursor: pointer;
         min-width: 100%;
     }
