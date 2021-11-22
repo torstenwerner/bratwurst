@@ -1,4 +1,6 @@
 <script>
+    import {blur} from "svelte/transition";
+ 
     export let label;
     export let values;
     export let value;
@@ -10,7 +12,7 @@
     }
 </script>
 
-<div>
+<div in:blur={{delay: 400}} out:blur>
     <label for="select">{label}</label>
     <select name="select" bind:value use:initFocus>
         {#each values as value}

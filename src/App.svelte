@@ -1,6 +1,7 @@
 <script>
 	import Chart from 'svelte-frappe-charts';
 	import {promise, locations, ages} from './repository';
+    import {blur} from "svelte/transition";
 	import Description from "./Description.svelte";
 	import Select from './Select.svelte';
 	
@@ -19,8 +20,10 @@
 
 {#await promise then data}
 	{#if !showFullDescription}
-		<Chart title="Hospitalisierungsinzidenz" data={data[location][age]} type="line" height="800"
-			lineOptions={{dotSize: 3, regionFill: 1}} axisOptions={{xIsSeries: true, xAxisMode: 'tick'}} />
+		<div in:blur={{delay: 400}} out:blur>
+			<Chart title="Hospitalisierungsinzidenz" data={data[location][age]} type="line" height="800"
+				lineOptions={{dotSize: 3, regionFill: 1}} axisOptions={{xIsSeries: true, xAxisMode: 'tick'}} />
+		</div>
 	{/if}
 {/await}
 
