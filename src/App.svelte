@@ -8,6 +8,7 @@
 	let showFullDescription;
 	let location = 'Bundesgebiet';
 	let age = ages[0];
+	let height = window.innerHeight > 400 ? 200 + window.innerHeight / 2 : window.innerHeight;
 </script>
 
 <header>
@@ -21,7 +22,7 @@
 {#await promise then data}
 	{#if !showFullDescription}
 		<div in:blur={{delay: 400}} out:blur>
-			<Chart title="Hospitalisierungsinzidenz" data={data[location][age]} type="line" height="800"
+			<Chart title="Hospitalisierungsinzidenz" data={data[location][age]} type="line" height={height}
 				lineOptions={{dotSize: 3, regionFill: 1}} axisOptions={{xIsSeries: true, xAxisMode: 'tick'}} />
 		</div>
 	{/if}
