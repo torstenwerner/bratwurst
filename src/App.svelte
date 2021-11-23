@@ -1,7 +1,7 @@
 <script>
 	import Chart from 'svelte-frappe-charts';
 	import {promise, locations, ages} from './repository';
-    import {blur} from "svelte/transition";
+    import {blur, fade} from "svelte/transition";
 	import Description from "./Description.svelte";
 	import Select from './Select.svelte';
 	
@@ -31,8 +31,10 @@
 </header>
 
 <svelte:window on:resize={() => resizeCounter++} />
-
-{#await promise then data}
+	
+{#await promise}
+	<p transition:blur={{delay: 2000, duration: 2000}}>Bitte warten...</p>
+{:then data}
 	{#if !showFullDescription}
 		{#key resizeCounter}
 			<div in:blur={{delay: 400}} out:blur>
@@ -41,6 +43,8 @@
 			</div>
 		{/key}
 	{/if}
+{:catch}
+	<p transition:blur>Beim Laden der Daten ist ein Fehler aufgetreten.</p>
 {/await}
 
 <style>
@@ -58,5 +62,9 @@
 		gap: 1em;
 		align-items: flex-end;
 		margin: 0 max(0px, var(--margin-size1) - var(--margin-size2));
+	}
+	p {
+		text-align: center;
+		margin-top: 10%;
 	}
 </style>
