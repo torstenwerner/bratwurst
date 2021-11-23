@@ -5,7 +5,7 @@
 	import Description from "./Description.svelte";
 	import Select from './Select.svelte';
 	
-	let showFullDescription;
+	let startShowFullDescription;
 	let location = 'Bundesgebiet';
 	let age = ages[0];
 
@@ -23,8 +23,8 @@
 </script>
 
 <header>
-	<Description bind:opened={showFullDescription} />
-	{#if !showFullDescription}
+	<Description bind:startOpen={startShowFullDescription} />
+	{#if !startShowFullDescription}
 		<Select label="Region" values={locations} bind:value={location} focus />
 		<Select label="Altersgruppe" values={ages} bind:value={age} />
 	{/if}
@@ -35,9 +35,9 @@
 {#await promise}
 	<p transition:blur={{delay: 2000, duration: 2000}}>Bitte warten...</p>
 {:then data}
-	{#if !showFullDescription}
+	{#if !startShowFullDescription}
 		{#key resizeCounter}
-			<div in:blur={{delay: 400}} out:blur>
+			<div transition:blur>
 				<Chart title="Hospitalisierungsinzidenz" data={data[location][age]} type="line" height={getHeight()}
 					lineOptions={{dotSize: 3, regionFill: 1}} axisOptions={{xIsSeries: true, xAxisMode: 'tick'}} />
 			</div>

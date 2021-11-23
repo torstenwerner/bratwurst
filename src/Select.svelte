@@ -12,7 +12,7 @@
     }
 </script>
 
-<div in:blur={{delay: 400}} out:blur>
+<div transition:blur>
     <label for="select">{label}</label>
     <select name="select" bind:value use:initFocus>
         {#each values as value}

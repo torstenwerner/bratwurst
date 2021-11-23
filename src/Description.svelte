@@ -1,9 +1,18 @@
 <script>
 	import Chart from 'svelte-frappe-charts';
 	import {postChanges} from './repository';
-    import {blur, slide} from "svelte/transition";
+    import {blur} from "svelte/transition";
 
-    export let opened = false;
+    /**
+     * Will be set to true as soon as showing the full description has been triggered. Will be set to false as soon as the full
+     * description is hidden at the end of the animation.
+     */
+    export let startOpen = false;
+    /**
+     * Will be set to true at the end of the transition of the full description. Will be set to false as soon as hiding the full
+     * description has been triggered.
+     */
+    export let endOpen = false;
 </script>
 
 <p>
@@ -11,8 +20,8 @@
     Die Daten werden vom RKI täglich aktualisiert.
 </p>
 
-{#if opened}
-    <div in:slide={{delay: 400}} out:blur>
+{#if endOpen}
+    <div transition:blur on:outroend={() => startOpen = false} >
         <p>
             Die Werte bis einschließlich Mai 2020 sind sehr ungenau, weil das Meldesystem zu dieser Zeit erst aufgebaut wurde.
         </p>
@@ -24,12 +33,12 @@
         <div>
             <Chart title="Nachmeldungen" data={postChanges} type="bar" height="400"/>
         </div>
-        <p on:click={() => opened = false} class="trigger" >
+        <p on:click={() => endOpen = false} class="trigger" >
             Inzidenzdaten zeigen...
         </p>    
     </div>
-{:else}
-    <p on:click={() => opened = true} class="trigger" in:blur={{delay: 400}} out:blur>
+{:else if !startOpen}
+    <p on:click={() => startOpen = true} on:outroend={() => endOpen = true} class="trigger" transition:blur>
         Mehr Informationen...
     </p>
 {/if}
