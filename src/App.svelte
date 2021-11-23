@@ -8,7 +8,18 @@
 	let showFullDescription;
 	let location = 'Bundesgebiet';
 	let age = ages[0];
-	let height = Math.min(200 + window.innerHeight / 2, window.innerHeight);
+
+	/**
+	 * Returns a responsive height of the chart in px. It will be the window height if this is not bigger than 400px. It returns
+	 * a smaller but dynamic value otherwise.
+	 */
+	function getHeight() {
+		return Math.min(200 + window.innerHeight / 2, window.innerHeight);
+	}
+	/**
+	 * Force a rerender of the chart on window resize e.g. rotating the phone.
+	 */
+	let resizeCounter = 0;
 </script>
 
 <header>
@@ -19,12 +30,16 @@
 	{/if}
 </header>
 
+<svelte:window on:resize={() => resizeCounter++} />
+
 {#await promise then data}
 	{#if !showFullDescription}
-		<div in:blur={{delay: 400}} out:blur>
-			<Chart title="Hospitalisierungsinzidenz" data={data[location][age]} type="line" height={height}
-				lineOptions={{dotSize: 3, regionFill: 1}} axisOptions={{xIsSeries: true, xAxisMode: 'tick'}} />
-		</div>
+		{#key resizeCounter}
+			<div in:blur={{delay: 400}} out:blur>
+				<Chart title="Hospitalisierungsinzidenz" data={data[location][age]} type="line" height={getHeight()}
+					lineOptions={{dotSize: 3, regionFill: 1}} axisOptions={{xIsSeries: true, xAxisMode: 'tick'}} />
+			</div>
+		{/key}
 	{/if}
 {/await}
 
