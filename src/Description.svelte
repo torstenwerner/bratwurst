@@ -1,7 +1,7 @@
 <script>
     import Chart from "svelte-frappe-charts";
     import { postChanges as data } from "./daily-data-repository";
-    imp./daily-data-repository from "svelte/transition";
+    import { blur } from "svelte/transition";
 
     /**
      * Will be set to true as soon as showing the full description has been triggered. Will be set to false as soon as the full
