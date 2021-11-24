@@ -57,10 +57,6 @@
 {/await}
 
 <style>
-	:global(:root) {
-		--gray-color: #777;
-		--blue-color: #7cd6fd;
-	}
 	:root {
 		--margin-size1: 50vw;
 		--margin-size2: 35em;

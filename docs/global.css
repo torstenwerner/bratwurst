@@ -1,3 +1,8 @@
+:root {
+	--gray-color: hsl(0, 0%, 47%);;
+	--blue-color: hsl(198, 97%, 40%);;
+}
+
 html, body {
 	position: relative;
 	width: 100%;
