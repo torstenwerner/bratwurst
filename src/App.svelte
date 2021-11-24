@@ -64,7 +64,6 @@
 	header {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 1em;
 		align-items: flex-end;
 		margin: 0 max(0px, var(--margin-size1) - var(--margin-size2));
 	}

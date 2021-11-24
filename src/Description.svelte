@@ -23,6 +23,13 @@
 {#if endOpen}
     <div transition:blur on:outroend={() => (startOpen = false)}>
         <p>
+            Die Daten und weitere Erläuterungen dazu werden vom RKI unter der Adresse
+            <a target="_blank" href="https://github.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland">
+                https://github.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland
+            </a>
+            veröffentlicht.
+        </p>
+        <p>
             Die Werte bis einschließlich Mai 2020 sind sehr ungenau, weil das
             Meldesystem zu dieser Zeit erst aufgebaut wurde.
         </p>
@@ -36,7 +43,7 @@
         <div>
             <Chart title="Nachmeldungen" {data} type="bar" height="400" />
         </div>
-        <p on:click={() => (endOpen = false)} class="trigger">
+        <p on:click={() => (endOpen = false)} class="trigger link">
             Inzidenzdaten zeigen...
         </p>
     </div>
@@ -44,7 +51,7 @@
     <p
         on:click={() => (startOpen = true)}
         on:outroend={() => (endOpen = true)}
-        class="trigger"
+        class="trigger link"
         transition:blur
     >
         Mehr Informationen...
@@ -53,11 +60,10 @@
 
 <style>
     p {
-        margin-block: 0;
+        margin-block-start: 0;
+        margin-block-end: 0.5em;
     }
     .trigger {
-        color: var(--blue-color);
-        cursor: pointer;
         min-width: 100%;
     }
 </style>

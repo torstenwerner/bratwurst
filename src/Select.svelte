@@ -12,7 +12,7 @@
     }
 </script>
 
-<div transition:blur>
+<div transition:blur class="container">
     <label for="select">{label}</label>
     <select name="select" bind:value use:initFocus>
         {#each values as value}
@@ -24,6 +24,9 @@
 </div>
 
 <style>
+    .container {
+        margin-right: 1em;
+    }
     label {
         padding: 0.25rem 0.75rem;
         color: var(--gray-color);
@@ -39,5 +42,9 @@
     select:focus {
         border-color: var(--blue-color);
         outline-color: var(--blue-color);
+    }
+    select:focus:hover {
+        border-color: var(--dark-blue-color);
+        outline-color: var(--dark-blue-color);
     }
 </style>
