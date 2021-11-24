@@ -6,8 +6,6 @@
 	import Select from "./Select.svelte";
 	import { onMount } from "svelte";
 
-    export let show;
-
     let startShowFullDescription;
 	let location = "Bundesgebiet";
 	let age = ages[0];
@@ -32,7 +30,7 @@
 	{#if !startShowFullDescription}
 		<Select label="Region" values={locations} bind:value={location} focus />
 		<Select label="Altersgruppe" values={ages} bind:value={age} />
-        <p on:click={() => show = false} class="link">Adjustierte Schätzdaten anzeigen...</p>
+        <p on:click class="link">Adjustierte Schätzdaten anzeigen...</p>
 	{/if}
 </header>
 
