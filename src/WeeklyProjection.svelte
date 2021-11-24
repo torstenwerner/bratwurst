@@ -4,6 +4,8 @@
     import { blur } from "svelte/transition";
 	import { onMount } from "svelte";
 
+    export let hide;
+
     let height;
     /**
      * Force a rerender of the chart on window resize e.g. rotating the phone.
@@ -19,6 +21,14 @@
     }
     onMount(onResize);
 </script>
+
+<header>
+    <p>
+        Es werden die wöchentlich aktualisierten Schätzdaten im Vergleich zu den Meldedaten angezeigt.
+        Die Schätzung enthält eine Korrektur für den Meldeverzug.
+    </p>
+    <p on:click={() => hide = true} class="link">Tägliche Meldedaten anzeigen...</p>
+</header>
 
 {#await promise}
     <p transition:blur={{ delay: 2000, duration: 2000 }}>Bitte warten...</p>

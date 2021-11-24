@@ -59,10 +59,6 @@
 {/if}
 
 <style>
-    p {
-        margin-block-start: 0;
-        margin-block-end: 0.5em;
-    }
     .trigger {
         min-width: 100%;
     }

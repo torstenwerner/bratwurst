@@ -6,7 +6,9 @@
 	import Select from "./Select.svelte";
 	import { onMount } from "svelte";
 
-	let startShowFullDescription;
+    export let show;
+
+    let startShowFullDescription;
 	let location = "Bundesgebiet";
 	let age = ages[0];
 	let height;
@@ -30,6 +32,7 @@
 	{#if !startShowFullDescription}
 		<Select label="Region" values={locations} bind:value={location} focus />
 		<Select label="Altersgruppe" values={ages} bind:value={age} />
+        <p on:click={() => show = false} class="link">Adjustierte Schätzdaten anzeigen...</p>
 	{/if}
 </header>
 
@@ -53,7 +56,7 @@
 		{/key}
 	{/if}
 {:catch}
-	<p transition:blur>Beim Laden der Daten ist ein Fehler aufgetreten.</p>
+	<p class="error-message" transition:blur>Beim Laden der Daten ist ein Fehler aufgetreten.</p>
 {/await}
 
 <style>
@@ -61,13 +64,7 @@
 		--margin-size1: 50vw;
 		--margin-size2: 35em;
 	}
-	header {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: flex-end;
-		margin: 0 max(0px, var(--margin-size1) - var(--margin-size2));
-	}
-	p {
+	.error-message {
 		text-align: center;
 		margin-top: 10%;
 	}

@@ -22,6 +22,18 @@ body {
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
+header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	margin: 0 max(0px, var(--margin-size1) - var(--margin-size2));
+}
+
+p {
+	margin-block-start: 0;
+	margin-block-end: 0.5em;
+}
+
 a, .link {
 	color: var(--blue-color);
 	text-decoration: none;

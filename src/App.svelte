@@ -6,10 +6,8 @@
 	let showDailyData = true;
 </script>
 
-<!-- <input type="checkbox" bind:checked={showDailyData} /> -->
-
 {#if showDailyData}
-	<div transition:blur><DailyData /></div>
+	<div transition:blur><DailyData bind:show={showDailyData}/></div>
 {:else}
-	<div transition:blur><WeeklyProjection /></div>
+	<div transition:blur><WeeklyProjection bind:hide={showDailyData} /></div>
 {/if}
