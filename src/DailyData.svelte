@@ -1,6 +1,6 @@
 <script>
 	import Chart from "svelte-frappe-charts";
-	import { promise, locations, ages } from "./repository";
+	import { promise, locations, ages } from "./daily-data-repository";
 	import { blur } from "svelte/transition";
 	import Description from "./Description.svelte";
 	import Select from "./Select.svelte";
