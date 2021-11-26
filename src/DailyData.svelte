@@ -1,14 +1,12 @@
 <script>
 	import Chart from "svelte-frappe-charts";
-	import { promise, locations, ages } from "./daily-data-repository";
+	import { promise, locations, currentLocation, ages, currentAge } from "./daily-data-repository";
 	import { blur } from "svelte/transition";
 	import Description from "./Description.svelte";
 	import Select from "./Select.svelte";
 	import { onMount } from "svelte";
 
     let startShowFullDescription;
-	let location = "Bundesgebiet";
-	let age = ages[0];
 	let height;
 	/**
 	 * Force a rerender of the chart on window resize e.g. rotating the phone.
@@ -28,8 +26,8 @@
 <header>
 	<Description bind:startOpen={startShowFullDescription} />
 	{#if !startShowFullDescription}
-		<Select label="Region" values={locations} bind:value={location} focus />
-		<Select label="Altersgruppe" values={ages} bind:value={age} />
+		<Select label="Region" values={locations} bind:value={$currentLocation} focus />
+		<Select label="Altersgruppe" values={ages} bind:value={$currentAge} />
         <p on:click class="link">Adjustierte Schätzdaten anzeigen...</p>
 	{/if}
 </header>
@@ -44,7 +42,7 @@
 			<div transition:blur>
 				<Chart
 					title="Hospitalisierungsinzidenz"
-					data={data[location][age]}
+					data={data[$currentLocation][$currentAge]}
 					type="line"
 					{height}
 					lineOptions={{ dotSize: 3, regionFill: 1 }}

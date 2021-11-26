@@ -1,3 +1,5 @@
+import { writable } from "svelte/store";
+
 const url = 'https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/master/Aktuell_Deutschland_COVID-19-Hospitalisierungen.csv';
 
 function rki2Frappe(dataset, csvLine) {
@@ -32,7 +34,11 @@ export const locations = ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg
     'Mecklenburg-Vorpommern', 'Niedersachsen', 'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Sachsen',
     'Sachsen-Anhalt', 'Schleswig-Holstein', 'Thüringen'];
 
+export const currentLocation = writable('Bundesgebiet');
+
 export const ages = ['00+', '00-04', '05-14', '15-34', '35-59', '60-79', '80+'];
+
+export const currentAge = writable(ages[0]);
 
 export const postChanges = {
     labels: ['07.11.2021', '08.11.2021', '09.11.2021', '10.11.2021', '11.11.2021', '12.11.2021', '13.11.2021', '14.11.2021',
