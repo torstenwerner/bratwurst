@@ -2,6 +2,7 @@
 	--gray-color: hsl(0, 0%, 47%);;
 	--blue-color: hsl(198, 97%, 40%);
 	--dark-blue-color: hsl(198, 97%, 30%);
+	--background-colar: hsl(30deg 30% 95%);
 }
 
 html, body {
@@ -17,6 +18,7 @@ html, body {
 
 body {
 	color: #333;
+	background-color: var(--background-colar);
 	margin: 0;
 	padding: 8px;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -78,4 +80,8 @@ button:not(:disabled):active {
 
 button:focus {
 	border-color: #666;
+}
+
+select {
+	background-color: unset;
 }
