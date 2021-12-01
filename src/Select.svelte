@@ -21,6 +21,7 @@
 <style>
     .container {
         margin-right: 1em;
+        --borderFocusColor: var(--blue-color);
     }
     .label {
         padding: 0.25rem 0.75rem;
