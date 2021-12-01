@@ -28,7 +28,7 @@
     .label {
         padding: 0.25rem 0.75rem;
         color: var(--gray-color);
-        font-size: 00.75rem;
+        font-size: 0.75rem;
     }
     .select {
         width: 25ch;
