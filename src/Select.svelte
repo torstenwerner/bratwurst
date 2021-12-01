@@ -22,6 +22,8 @@
     .container {
         margin-right: 1em;
         --borderFocusColor: var(--blue-color);
+        --itemIsActiveBG: var(--blue-color);
+        --itemHoverBG: var(--light-blue-color);
     }
     .label {
         padding: 0.25rem 0.75rem;
