@@ -1,5 +1,6 @@
 <script>
     import { blur } from "svelte/transition";
+    import Select from "svelte-select";
 
     export let label;
     export let values;
@@ -13,38 +14,23 @@
 </script>
 
 <div transition:blur class="container">
-    <label for="select">{label}</label>
-    <select name="select" bind:value use:initFocus>
-        {#each values as value}
-            <option {value}>
-                {value}
-            </option>
-        {/each}
-    </select>
+    <div class="label">{label}</div>
+    <div class="select">
+        <Select items={values} {value}/>
+    </div>
 </div>
 
 <style>
     .container {
         margin-right: 1em;
     }
-    label {
+    .label {
         padding: 0.25rem 0.75rem;
         color: var(--gray-color);
         font-size: 00.75rem;
     }
-    select {
+    .select {
         width: 25ch;
-        border: 1px solid var(--gray-color);
-        border-radius: 0.25em;
         padding: 0.25em 0.5em;
-        cursor: pointer;
-    }
-    select:focus {
-        border-color: var(--blue-color);
-        outline-color: var(--blue-color);
-    }
-    select:focus:hover {
-        border-color: var(--dark-blue-color);
-        outline-color: var(--dark-blue-color);
     }
 </style>
