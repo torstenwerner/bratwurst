@@ -6,17 +6,15 @@
     export let values;
     export let value;
     export let focus = false;
-    function initFocus(element) {
-        if (focus) {
-            element.focus();
-        }
-    }
+
+    let item = { value, label: value };
+    $: value = item.value;
 </script>
 
 <div transition:blur class="container">
     <div class="label">{label}</div>
     <div class="select">
-        <Select items={values} {value}/>
+        <Select items={values} bind:value={item} isFocused={focus} />
     </div>
 </div>
 
