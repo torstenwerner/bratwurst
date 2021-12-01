@@ -30,11 +30,11 @@ export const promise = fetch(url)
     .then(response => response.text())
     .then(csv => parse(csv));
 
-export const locations = ['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen', 'Bundesgebiet', 'Hamburg', 'Hessen',
+export const locations = ['Bundesgebiet', 'Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen', 'Hamburg', 'Hessen',
     'Mecklenburg-Vorpommern', 'Niedersachsen', 'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Sachsen',
     'Sachsen-Anhalt', 'Schleswig-Holstein', 'Thüringen'];
 
-export const currentLocation = writable('Bundesgebiet');
+export const currentLocation = writable(locations[0]);
 
 export const ages = ['00+', '00-04', '05-14', '15-34', '35-59', '60-79', '80+'];
 
