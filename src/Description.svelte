@@ -1,6 +1,6 @@
 <script>
     import Chart from "svelte-frappe-charts";
-    import { postChanges as data } from "./daily-data-repository";
+    import { postChanges as data } from "./metadata";
     import { blur } from "svelte/transition";
 
     /**

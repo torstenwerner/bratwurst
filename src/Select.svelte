@@ -8,7 +8,7 @@
     export let focus = false;
 
     let item = { value, label: value };
-    $: value = item.value;
+    $: value = item?.value;
 </script>
 
 <div transition:blur class="container">

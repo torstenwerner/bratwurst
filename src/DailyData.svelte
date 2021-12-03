@@ -1,6 +1,7 @@
 <script>
 	import Chart from "svelte-frappe-charts";
-	import { promise, locations, currentLocation, ages, currentAge } from "./daily-data-repository";
+	import { promise } from "./daily-data-repository";
+	import { locations, currentLocation, ages, currentAge } from "./metadata";
 	import { blur } from "svelte/transition";
 	import Description from "./Description.svelte";
 	import Select from "./Select.svelte";
@@ -37,12 +38,12 @@
 {#await promise}
 	<p transition:blur={{ delay: 2000, duration: 2000 }}>Bitte warten...</p>
 {:then data}
-	{#if !startShowFullDescription}
+	{#if !startShowFullDescription && $currentLocation && $currentAge}
 		{#key resizeCounter}
 			<div transition:blur>
 				<Chart
 					title="Hospitalisierungsinzidenz"
-					data={data[$currentLocation][$currentAge]}
+					data={data[$currentLocation]?.[$currentAge]}
 					type="line"
 					{height}
 					lineOptions={{ dotSize: 3, regionFill: 1 }}
