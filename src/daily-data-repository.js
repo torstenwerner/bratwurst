@@ -8,7 +8,7 @@ function rki2Frappe(dataset, csvLine) {
     if (!dataset[location][age]) {
         dataset[location][age] = {
             labels: [],
-            datasets: [{ values: [] }]
+            datasets: [{ name: `${location} ${age}`, values: [] }]
         };
     }
     dataset[location][age].labels.push(date);

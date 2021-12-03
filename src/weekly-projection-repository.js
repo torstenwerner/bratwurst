@@ -5,7 +5,7 @@ function rki2Frappe(dataset, csvLine) {
     if (!dataset[location]) {
         dataset[location] = {
             labels: [],
-            datasets: [{ name: 'Meldung', values: [] }, { name: 'Schätzung', values: [] }]
+            datasets: [{ name: `Meldung ${location}`, values: [] }, { name: `Schätzung ${location}`, values: [] }]
         };
     }
     dataset[location].labels.push(date);
