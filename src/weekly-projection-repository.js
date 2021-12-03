@@ -1,7 +1,10 @@
 const url = 'https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/master/Aktuell_Deutschland_adjustierte-COVID-19-Hospitalisierungen.csv';
 
 function rki2Frappe(dataset, csvLine) {
-    const [date, , , , , , data, projection] = csvLine.split(',');
+    const [date, location, , , , , , , , , , data, projection] = csvLine.split(',');
+    if (location !== 'Bundesgebiet') {
+        return dataset;
+    }
     dataset.labels.push(date);
     dataset.datasets[0].values.push(data);
     dataset.datasets[1].values.push(projection);
