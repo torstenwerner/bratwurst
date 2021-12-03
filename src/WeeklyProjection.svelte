@@ -1,7 +1,9 @@
 <script>
     import Chart from "svelte-frappe-charts";
     import { promise } from "./weekly-projection-repository";
+	import { locations, currentLocation } from "./metadata";
     import { blur } from "svelte/transition";
+	import Select from "./Select.svelte";
 	import { onMount } from "svelte";
 
     let height;
@@ -25,6 +27,7 @@
         Es werden die wöchentlich aktualisierten Schätzdaten im Vergleich zu den Meldedaten angezeigt.
         Die Schätzung enthält eine Korrektur für den Meldeverzug.
     </p>
+    <Select label="Region" values={locations} bind:value={$currentLocation} focus />
     <p on:click class="link">Tägliche Meldedaten anzeigen...</p>
 </header>
 
@@ -35,7 +38,7 @@
         <div transition:blur>
             <Chart
                 title="Hospitalisierungsinzidenz"
-                data={data['Bundesgebiet']}
+                data={data[$currentLocation]}
                 type="line"
                 {height}
                 lineOptions={{ dotSize: 3, regionFill: 1 }}
