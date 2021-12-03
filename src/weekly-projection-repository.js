@@ -2,12 +2,15 @@ const url = 'https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Hos
 
 function rki2Frappe(dataset, csvLine) {
     const [date, location, , , , , , , , , , data, projection] = csvLine.split(',');
-    if (location !== 'Bundesgebiet') {
-        return dataset;
+    if (!dataset[location]) {
+        dataset[location] = {
+            labels: [],
+            datasets: [{ name: 'Meldung', values: [] }, { name: 'Schätzung', values: [] }]
+        };
     }
-    dataset.labels.push(date);
-    dataset.datasets[0].values.push(data);
-    dataset.datasets[1].values.push(projection);
+    dataset[location].labels.push(date);
+    dataset[location].datasets[0].values.push(data);
+    dataset[location].datasets[1].values.push(projection);
     return dataset;
 }
 
@@ -16,10 +19,7 @@ function parse(csv) {
         .split('\n')
         .slice(1)
         .reverse()
-        .reduce((result, current) => rki2Frappe(result, current), {
-            labels: [],
-            datasets: [{ name: 'Meldung', values: [] }, { name: 'Schätzung', values: [] }]
-        });
+        .reduce((result, current) => rki2Frappe(result, current), {});
 }
 
 export const promise = fetch(url)

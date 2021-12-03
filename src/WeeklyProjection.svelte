@@ -35,7 +35,7 @@
         <div transition:blur>
             <Chart
                 title="Hospitalisierungsinzidenz"
-                {data}
+                data={data['Bundesgebiet']}
                 type="line"
                 {height}
                 lineOptions={{ dotSize: 3, regionFill: 1 }}
