@@ -2,6 +2,7 @@
     import Chart from "svelte-frappe-charts";
     import { postChanges as data } from "./metadata";
     import { blur } from "svelte/transition";
+    import { onMount } from "svelte";
 
     /**
      * Will be set to true as soon as showing the full description has been triggered. Will be set to false as soon as the full
@@ -13,32 +14,29 @@
      * description has been triggered.
      */
     export let endOpen = false;
+
+    function copyFromIndexHtml(node, id) {
+        node.innerHTML = document.getElementById(id).innerHTML;
+    }
+    function hideSeoText() {
+        document
+            .querySelectorAll(".seoText")
+            .forEach((node) => (node.hidden = true));
+    }
+    onMount(hideSeoText);
 </script>
 
-<p>
-    Es werden die Daten des Robert-Koch-Instituts zur Hospitalisierungsinzidenz
-    für Deutschland angezeigt. Die Daten werden vom RKI täglich aktualisiert.
-</p>
+<p use:copyFromIndexHtml={"introReportedData"} />
 
 {#if endOpen}
     <div transition:blur on:outroend={() => (startOpen = false)}>
+        <p use:copyFromIndexHtml={"extraReportedData01"} />
+        <p use:copyFromIndexHtml={"extraReportedData02"} />
         <p>
-            Die Daten und weitere Erläuterungen dazu werden vom RKI unter der Adresse
-            <a target="_blank" href="https://github.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland">
-                https://github.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland
-            </a>
-            veröffentlicht.
-        </p>
-        <p>
-            Die Werte bis einschließlich Mai 2020 sind sehr ungenau, weil das
-            Meldesystem zu dieser Zeit erst aufgebaut wurde.
-        </p>
-        <p>
-            Desweiteren gibt es einen Meldeverzug, so dass die aktuellsten Werte
-            leider ungenau sind. Das folgende Diagram zeigt beispielhaft den
-            ursprünglichen Inzidenzwert für den 07.11.2021 und wie er jeden
-            weiteren Tag nach oben korrigiert wurde. Nach etwa 2 Wochen ist der
-            Wert knapp doppelt so hoch wie ursprünglich.
+            Das folgende Diagram zeigt beispielhaft den ursprünglichen
+            Inzidenzwert für den 07.11.2021 und wie er jeden weiteren Tag nach
+            oben korrigiert wurde. Nach etwa 2 Wochen ist der Wert knapp doppelt
+            so hoch wie ursprünglich.
         </p>
         <div>
             <Chart title="Nachmeldungen" {data} type="bar" height="400" />
