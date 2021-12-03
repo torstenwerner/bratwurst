@@ -1,14 +1,23 @@
 <script>
     import { blur } from "svelte/transition";
     import Select from "svelte-select";
+    import { tick } from "svelte";
 
     export let label;
     export let values;
     export let value;
     export let focus = false;
 
-    let item = { value, label: value };
-    $: value = item?.value;
+    function value2item(value) {
+        return { value, label: value };
+    }
+
+    let item = value2item(value);
+    $: if (item != null) {
+        value = item.value;
+    } else {
+        tick().then(() => item = value2item(values[0]));
+    }
 </script>
 
 <div transition:blur class="container">
