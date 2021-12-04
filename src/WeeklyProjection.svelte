@@ -24,7 +24,7 @@
 
 <header>
     <p>
-        Es werden die wöchentlich aktualisierten Schätzdaten im Vergleich zu den Meldedaten angezeigt.
+        Es werden die täglich aktualisierten Schätzdaten im Vergleich zu den Meldedaten angezeigt.
         Die Schätzung enthält eine Korrektur für den Meldeverzug.
     </p>
     <Select label="Region" values={locations} bind:value={$currentLocation} focus />
