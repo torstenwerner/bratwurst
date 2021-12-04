@@ -1,10 +1,10 @@
 <script>
     import Chart from "svelte-frappe-charts";
-    import { promise } from "./weekly-projection-repository";
-	import { locations, currentLocation } from "./metadata";
+    import { promise } from "./projected-data-repository";
+    import { locations, currentLocation } from "./metadata";
     import { blur } from "svelte/transition";
-	import Select from "./Select.svelte";
-	import { onMount } from "svelte";
+    import Select from "./Select.svelte";
+    import { onMount } from "svelte";
 
     let height;
     /**
@@ -24,10 +24,16 @@
 
 <header>
     <p>
-        Es werden die täglich aktualisierten Schätzdaten im Vergleich zu den Meldedaten angezeigt.
-        Die Schätzung enthält eine Korrektur für den Meldeverzug.
+        Es werden die täglich aktualisierten Schätzdaten im Vergleich zu den
+        Meldedaten angezeigt. Die Schätzung enthält eine Korrektur für den
+        Meldeverzug.
     </p>
-    <Select label="Region" values={locations} bind:value={$currentLocation} focus />
+    <Select
+        label="Region"
+        values={locations}
+        bind:value={$currentLocation}
+        focus
+    />
     <p on:click class="link">Tägliche Meldedaten anzeigen...</p>
 </header>
 

@@ -1,6 +1,6 @@
 <script>
-	import DailyData from "./DailyData.svelte";
-	import WeeklyProjection from "./WeeklyProjection.svelte";
+	import ReportedData from "./ReportedData.svelte";
+	import ProjectedData from "./ProjectedData.svelte";
 	import { blur } from "svelte/transition";
 
 	/**
@@ -11,10 +11,10 @@
 
 {#if showReportedData}
 	<div transition:blur>
-		<DailyData on:click={() => (showReportedData = false)} />
+		<ReportedData on:click={() => (showReportedData = false)} />
 	</div>
 {:else}
 	<div transition:blur>
-		<WeeklyProjection on:click={() => (showReportedData = true)} />
+		<ProjectedData on:click={() => (showReportedData = true)} />
 	</div>
 {/if}
