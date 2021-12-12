@@ -2,7 +2,6 @@
     import Chart from "svelte-frappe-charts";
     import { postChanges as data } from "./metadata";
     import { blur } from "svelte/transition";
-    import { onMount } from "svelte";
 
     /**
      * Will be set to true as soon as showing the full description has been triggered. Will be set to false as soon as the full
@@ -18,12 +17,6 @@
     function copyFromIndexHtml(node, id) {
         node.innerHTML = document.getElementById(id).innerHTML;
     }
-    function hideSeoText() {
-        document
-            .querySelectorAll(".seoText")
-            .forEach((node) => (node.hidden = true));
-    }
-    onMount(hideSeoText);
 </script>
 
 <p use:copyFromIndexHtml={"introReportedData"} />

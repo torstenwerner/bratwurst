@@ -16,6 +16,16 @@
 		component = componentMap[location.hash] || ReportedData;
 	}
 	onMount(hashChange);
+
+	/**
+	 * Hides all elements in index.html with class seoText.
+	 */
+	function hideSeoText() {
+        document
+            .querySelectorAll(".seoText")
+            .forEach((node) => (node.hidden = true));
+    }
+    onMount(hideSeoText);
 </script>
 
 <svelte:window on:hashchange={hashChange} />
