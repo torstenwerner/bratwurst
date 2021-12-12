@@ -30,6 +30,8 @@
 
 <svelte:window on:hashchange={hashChange} />
 
-<div transition:blur>
-	<svelte:component this={component} />
-</div>
+{#key component}
+	<div in:blur={{duration: 400, delay: 400}} out:blur={{duration: 400}}>
+		<svelte:component this={component} />
+	</div>
+{/key}
