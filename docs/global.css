@@ -37,7 +37,7 @@ p {
 	margin-block-end: 0.5em;
 }
 
-a {
+a, .link {
 	color: var(--blue-color);
 	text-decoration: none;
 	cursor: pointer;
