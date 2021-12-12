@@ -29,7 +29,7 @@
 	{#if !startShowFullDescription}
 		<Select label="Region" values={locations} bind:value={$currentLocation} focus />
 		<Select label="Altersgruppe" values={ages} bind:value={$currentAge} />
-        <p on:click class="link">Adjustierte Schätzdaten anzeigen...</p>
+        <a href="#projected" class="navigation">Adjustierte Schätzdaten anzeigen...</a>
 	{/if}
 </header>
 

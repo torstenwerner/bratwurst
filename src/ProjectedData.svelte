@@ -34,7 +34,7 @@
         bind:value={$currentLocation}
         focus
     />
-    <p on:click class="link">Tägliche Meldedaten anzeigen...</p>
+    <a href="#reported" class="navigation">Tägliche Meldedaten anzeigen...</a>
 </header>
 
 {#await promise}

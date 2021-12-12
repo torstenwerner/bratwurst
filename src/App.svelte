@@ -2,19 +2,24 @@
 	import ReportedData from "./ReportedData.svelte";
 	import ProjectedData from "./ProjectedData.svelte";
 	import { blur } from "svelte/transition";
+	import { onMount } from "svelte";
 
 	/**
-	 * Show reported data vs. projected data.
+	 * Implement hash navigation.
 	 */
-	let showReportedData = true;
+	const componentMap = {
+		"#reported": ReportedData,
+		"#projected": ProjectedData,
+	};
+	let component;
+	function hashChange() {
+		component = componentMap[location.hash] || ReportedData;
+	}
+	onMount(hashChange);
 </script>
 
-{#if showReportedData}
-	<div transition:blur>
-		<ReportedData on:click={() => (showReportedData = false)} />
-	</div>
-{:else}
-	<div transition:blur>
-		<ProjectedData on:click={() => (showReportedData = true)} />
-	</div>
-{/if}
+<svelte:window on:hashchange={hashChange} />
+
+<div transition:blur>
+	<svelte:component this={component} />
+</div>

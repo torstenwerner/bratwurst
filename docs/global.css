@@ -37,7 +37,7 @@ p {
 	margin-block-end: 0.5em;
 }
 
-a, .link {
+a {
 	color: var(--blue-color);
 	text-decoration: none;
 	cursor: pointer;
@@ -45,6 +45,10 @@ a, .link {
 
 a:hover, .link:hover {
 	color: var(--dark-blue-color);
+}
+
+.navigation {
+	padding-bottom: 1em;
 }
 
 label {
